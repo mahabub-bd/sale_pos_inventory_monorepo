@@ -1,0 +1,30 @@
+.DS_Store
+node_modules
+.turbo
+*.log
+dist
+dist-ssr
+*.local
+.env
+.env.production
+.env.local
+.cache
+server/dist
+public/dist
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Testing
+coverage/
+.nyc_output/
+
+# Misc
+*.tgz
+#Claude
+.claude/
+.env
