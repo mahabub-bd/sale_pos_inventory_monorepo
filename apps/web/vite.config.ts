@@ -21,11 +21,11 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src"),
+      "@": path.resolve(import.meta.dirname, "./src"),
     },
   },
   build: {
-    chunkSizeWarningLimit: 1000,
+    chunkSizeWarningLimit: 1500,
     rollupOptions: {
       output: {
         manualChunks(id) {

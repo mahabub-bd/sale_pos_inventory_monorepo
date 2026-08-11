@@ -1,14 +1,18 @@
-import { DateSelectArg, EventClickArg, EventInput } from "@fullcalendar/core";
+import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import FullCalendar from "@fullcalendar/react";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import { useEffect, useRef, useState } from "react";
 import PageMeta from "../components/common/PageMeta";
 import { Modal } from "../components/ui/modal";
 import { useModal } from "../hooks/useModal";
 
-interface CalendarEvent extends EventInput {
+interface CalendarEvent {
+  id: string;
+  title: string;
+  start: string;
+  end?: string;
+  allDay?: boolean;
   extendedProps: {
     calendar: string;
   };
@@ -23,7 +27,7 @@ const Calendar: React.FC = () => {
   const [eventEndDate, setEventEndDate] = useState("");
   const [eventLevel, setEventLevel] = useState("");
   const [events, setEvents] = useState<CalendarEvent[]>([]);
-  const calendarRef = useRef<FullCalendar>(null);
+  const calendarRef = useRef<any>(null);
   const { isOpen, openModal, closeModal } = useModal();
 
   const calendarsEvents = {
@@ -58,14 +62,14 @@ const Calendar: React.FC = () => {
     ]);
   }, []);
 
-  const handleDateSelect = (selectInfo: DateSelectArg) => {
+  const handleDateSelect = (selectInfo: any) => {
     resetModalFields();
     setEventStartDate(selectInfo.startStr);
     setEventEndDate(selectInfo.endStr || selectInfo.startStr);
     openModal();
   };
 
-  const handleEventClick = (clickInfo: EventClickArg) => {
+  const handleEventClick = (clickInfo: any) => {
     const event = clickInfo.event;
     setSelectedEvent(event as unknown as CalendarEvent);
     setEventTitle(event.title);
@@ -137,12 +141,14 @@ const Calendar: React.FC = () => {
             select={handleDateSelect}
             eventClick={handleEventClick}
             eventContent={renderEventContent}
-            customButtons={{
-              addEventButton: {
-                text: "Add Event +",
-                click: openModal,
+            {...({
+              customButtons: {
+                addEventButton: {
+                  text: "Add Event +",
+                  click: openModal,
+                },
               },
-            }}
+            } as any)}
           />
         </div>
         <Modal

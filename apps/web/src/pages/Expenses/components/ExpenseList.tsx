@@ -14,7 +14,7 @@ import {
   TableRow,
 } from "../../../components/ui/table";
 
-import { formatDate } from "@fullcalendar/core/index.js";
+import { formatDate } from "../../../utlis";
 import {
   useDeleteExpenseMutation,
   useGetExpensesQuery,
