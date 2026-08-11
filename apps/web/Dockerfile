@@ -10,7 +10,7 @@ RUN npm install -g pnpm@9.15.9
 COPY package.json pnpm-lock.yaml ./
 
 # ডিপেন্ডেন্সি ইনস্টল করা
-RUN pnpm install --frozen-lockfile
+RUN pnpm install
 
 # অ্যাপ্লিকেশনের বাকি সোর্স কোড কপি করা
 COPY . .
