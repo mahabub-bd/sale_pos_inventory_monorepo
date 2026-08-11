@@ -132,6 +132,9 @@ export class BackupService {
 
       this.logger.log(`Backup ${fileName} completed successfully`);
 
+      // Clean up old backups - keep only latest 15
+      await this.cleanupOldBackups(15);
+
       // Clean up temp file
       fs.unlinkSync(tempFilePath);
     } catch (error) {
@@ -463,5 +466,42 @@ export class BackupService {
   async deleteBackupRecord(id: number): Promise<void> {
     const backup = await this.getBackupById(id);
     await this.backupRepository.remove(backup);
+  }
+
+  /**
+   * Clean up old backups, keeping only the latest N records
+   */
+  async cleanupOldBackups(keepCount: number = 15): Promise<void> {
+    try {
+      // Get all backups ordered by creation date (newest first)
+      const allBackups = await this.backupRepository.find({
+        order: { created_at: 'DESC' },
+      });
+
+      // If we have more backups than we want to keep
+      if (allBackups.length > keepCount) {
+        // Get the oldest backups to delete (skip the first 'keepCount' records)
+        const toDelete = allBackups.slice(keepCount);
+
+        this.logger.log(
+          `Cleaning up ${toDelete.length} old backup(s), keeping latest ${keepCount}`,
+        );
+
+        // Delete each old backup
+        for (const backup of toDelete) {
+          try {
+            await this.backupRepository.remove(backup);
+            this.logger.log(`Deleted old backup record: ${backup.file_name}`);
+          } catch (error) {
+            this.logger.error(
+              `Failed to delete backup record ${backup.id}: ${(error as Error).message}`,
+            );
+          }
+        }
+      }
+    } catch (error) {
+      this.logger.error('Failed to cleanup old backups:', error);
+      // Don't throw error - cleanup failure shouldn't break the backup process
+    }
   }
 }
