@@ -24,21 +24,24 @@ const createStorage = () => {
   return {
     getItem: (key: string) => {
       try {
-        return storage?.getItem(key) ?? Promise.resolve(null);
+        const value = storage?.getItem(key);
+        return Promise.resolve(value ?? null);
       } catch {
         return Promise.resolve(null);
       }
     },
     setItem: (key: string, value: string) => {
       try {
-        return storage?.setItem(key, value) ?? Promise.resolve();
+        storage?.setItem(key, value);
+        return Promise.resolve();
       } catch {
         return Promise.resolve();
       }
     },
     removeItem: (key: string) => {
       try {
-        return storage?.removeItem(key) ?? Promise.resolve();
+        storage?.removeItem(key);
+        return Promise.resolve();
       } catch {
         return Promise.resolve();
       }
