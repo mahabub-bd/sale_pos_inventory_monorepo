@@ -1,6 +1,6 @@
 import { JSX } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate, useLocation } from "react-router";
+import { Navigate, useLocation } from "react-router-dom";
 import { logout } from "../features/auth/authSlice";
 import { RootState } from "../store";
 import { isTokenExpired } from "../utlis/authUtils";

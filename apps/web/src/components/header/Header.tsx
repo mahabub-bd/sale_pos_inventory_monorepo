@@ -1,6 +1,6 @@
 import { Menu, MoreVertical } from "lucide-react";
 import { useState } from "react";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import { ThemeToggleButton } from "../common/ThemeToggleButton";
 import Button from "../ui/button";
 import NotificationDropdown from "./NotificationDropdown";

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
-import { Link, useLocation } from "react-router";
+import { Link, useLocation } from "react-router-dom";
 import { useSidebar } from "../context/SidebarContext";
 import { useGetSettingsQuery } from "../features/settings/settingsApi";
 import { RootState } from "../store";

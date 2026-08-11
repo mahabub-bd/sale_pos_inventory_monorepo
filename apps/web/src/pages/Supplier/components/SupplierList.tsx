@@ -7,7 +7,7 @@ import {
   Trash2,
 } from "lucide-react";
 import { useState } from "react";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
 import ConfirmDialog from "../../../components/common/ConfirmDialog";

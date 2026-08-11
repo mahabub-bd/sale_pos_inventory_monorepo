@@ -1,7 +1,7 @@
 import { ChevronDown, LogOut, Settings } from "lucide-react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 import { logout } from "../../features/auth/authSlice";
 import { RootState } from "../../store";
 import { Dropdown } from "../ui/dropdown/Dropdown";

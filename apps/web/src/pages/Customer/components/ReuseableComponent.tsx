@@ -1,5 +1,5 @@
 import { BookOpen, Pencil } from "lucide-react";
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 import IconButton from "../../../components/common/IconButton";
 import { useHasPermission } from "../../../hooks/useHasPermission";
 

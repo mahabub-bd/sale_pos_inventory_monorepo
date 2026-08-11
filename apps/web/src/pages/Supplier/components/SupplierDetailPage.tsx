@@ -15,7 +15,7 @@ import {
   XCircle,
 } from "lucide-react";
 import { useState } from "react";
-import { Link, useNavigate, useParams } from "react-router";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import IconButton from "../../../components/common/IconButton";
 import Info from "../../../components/common/Info";
 import Loading from "../../../components/common/Loading";

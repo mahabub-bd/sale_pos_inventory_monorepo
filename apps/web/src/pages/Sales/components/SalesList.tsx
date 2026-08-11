@@ -1,6 +1,6 @@
 import { CreditCard, Eye, Plus, ShoppingCart, Wallet, X } from "lucide-react";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router-dom";
 
 import IconButton from "../../../components/common/IconButton";
 import Loading from "../../../components/common/Loading";

@@ -1,6 +1,6 @@
 import { ChevronLeft, FileDown, Truck, Wallet } from "lucide-react";
 import { useState } from "react";
-import { useParams } from "react-router";
+import { useParams } from "react-router-dom";
 
 import IconButton from "../../../components/common/IconButton";
 import Loading from "../../../components/common/Loading";
