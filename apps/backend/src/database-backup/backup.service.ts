@@ -430,6 +430,13 @@ export class BackupService {
   }
 
   /**
+   * Get total count of backups
+   */
+  async getBackupCount(): Promise<number> {
+    return this.backupRepository.count();
+  }
+
+  /**
    * Get backup by ID
    */
   async getBackupById(id: number): Promise<Backup> {

@@ -61,6 +61,21 @@ export class BackupController {
     return backups as unknown as BackupResponseDto[];
   }
 
+  @Get('count')
+  @ApiOperation({
+    summary: 'Get total count of backups',
+    description: 'Returns the total number of backup records',
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Count retrieved successfully',
+    schema: { type: 'number' },
+  })
+  async getBackupCount(): Promise<{ count: number }> {
+    const count = await this.backupService.getBackupCount();
+    return { count };
+  }
+
   @Get('latest')
   @ApiOperation({
     summary: 'Get latest completed backup',
