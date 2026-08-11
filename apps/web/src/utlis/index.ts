@@ -3,7 +3,7 @@ import { twMerge } from "tailwind-merge";
 import z from "zod";
 import { EmployeeStatus, EmployeeType } from "../types";
 import { ProductType } from "../types/product";
-export const baseUrl = import.meta.env.VITE_API_URL;
+export const baseUrl = import.meta.env.VITE_API_URL || "https://api.supplyzoneltd.com/v1";
 export const statusOptions = [
   { value: "pending", label: "Pending" },
   { value: "active", label: "Active" },
@@ -365,9 +365,9 @@ export function generateListTags<
 >(result: { data: T[] } | undefined, tagType: TagType) {
   return result?.data
     ? ([
-        ...result.data.map((item) => ({ type: tagType, id: item.id })),
-        { type: tagType, id: "LIST" as const },
-      ] as const)
+      ...result.data.map((item) => ({ type: tagType, id: item.id })),
+      { type: tagType, id: "LIST" as const },
+    ] as const)
     : ([{ type: tagType, id: "LIST" as const }] as const);
 }
 
